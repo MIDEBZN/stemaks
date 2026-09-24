@@ -49,7 +49,8 @@ npm run preview
 
 ## 📞 Coordonnées
 
-- **Entreprise** : Stemaks Plomberie Sprl
-- **Adresse** : Avenue de Broqueville 120, 1200 Woluwe-Saint-Lambert, Bruxelles
-- **Téléphone Urgence 24/7** : +32 2 880 45 67
-- **BCE / TVA** : BE 0798.452.190
+- **Entreprise** : Stemaks Plomberie
+- **Adresse** : Rue Abbé Jean Heymans 3, 1200 Woluwe-Saint-Lambert
+- **Téléphone Urgence 24/7** : 0485 81 39 39
+- **Email** : contact@stemaks.site
+- **N° TVA** : BE0473652186
