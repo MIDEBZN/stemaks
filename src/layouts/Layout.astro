@@ -1,0 +1,144 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EmergencyStickyBar from '../components/EmergencyStickyBar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = '/images/hero-plumber.jpg',
+  schema,
+} = Astro.props;
+
+const defaultSchema = {
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": "Stemaks Plomberie & Chauffage Bruxelles",
+  "image": new URL(ogImage, Astro.site || 'https://stemaks-plomberie.vercel.app').href,
+  "telephone": "+3228804567",
+  "url": "https://stemaks-plomberie.vercel.app",
+  "email": "contact@stemaks-plomberie.be",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenue de Broqueville 120",
+    "addressLocality": "Woluwe-Saint-Lambert",
+    "postalCode": "1200",
+    "addressRegion": "Bruxelles-Capitale",
+    "addressCountry": "BE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 50.8427,
+    "longitude": 4.4172
+  },
+  "areaServed": [
+    "Woluwe-Saint-Lambert",
+    "Woluwe-Saint-Pierre",
+    "Etterbeek",
+    "Ixelles",
+    "Schaerbeek",
+    "Bruxelles-Ville",
+    "Uccle",
+    "Auderghem",
+    "Evere",
+    "Kraainem"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services de Plomberie et Chauffage",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Débouchage canalisations express",
+          "description": "Débouchage WC, évier, baignoire et colonnes générales à haute pression."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Recherche et réparation de fuite d'eau",
+          "description": "Détection acoustique et caméra thermique non-destructive de fuites d'eau."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Dépannage et détartrage boiler et chauffe-eau",
+          "description": "Réparation et entretien de chauffe-eau toutes marques (Bulex, Vaillant, etc.)."
+        }
+      }
+    ]
+  }
+};
+
+const pageSchema = schema || defaultSchema;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    
+    <title>{title} | Stemaks Plomberie Bruxelles</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Stemaks Plomberie Sprl" />
+    <meta name="geo.region" content="BE-BRU" />
+    <meta name="geo.placename" content="Woluwe-Saint-Lambert" />
+    <meta name="geo.position" content="50.8427;4.4172" />
+    <meta name="ICBM" content="50.8427, 4.4172" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={`${title} | Stemaks Plomberie Bruxelles`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="fr_BE" />
+    <meta property="og:site_name" content="Stemaks Plomberie Woluwe" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Stemaks Plomberie Bruxelles`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <EmergencyStickyBar />
+  </body>
+</html>

@@ -1,0 +1,458 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PriceEstimator from '../components/PriceEstimator.astro';
+
+const servicesList = [
+  {
+    id: "debouchage",
+    title: "1. Débouchage Express & Curage Haute Pression",
+    badge: "Urgence 24/7",
+    desc: "Un évier bouché, une baignoire qui refoule ou des toilettes complètement obstruées nécessitent une action immédiate pour éviter tout débordement ou inondation.",
+    details: [
+      "Débouchage WC, lavabo, évier de cuisine, douche et baignoire",
+      "Hydrocurage haute pression (jusqu'à 300 bars) pour décoller graisses, tartre et lingettes",
+      "Passage de furet mécanique professionnel motorisé Rems",
+      "Inspection vidéo par micro-caméra endoscopique pour identifier casses ou racines",
+      "Débouchage de colonnes d'immeubles et descentes pluviales"
+    ],
+    pricing: "À partir de 95 € (déplacement & matériel inclus)",
+    warranty: "Garantie écoulement immédiat vérifié"
+  },
+  {
+    id: "fuites",
+    title: "2. Détection & Réparation de Fuite d'Eau Non-Destructive",
+    badge: "Agréé Assurances",
+    desc: "Une tache d'humidité au plafond, une facture d'eau anormale ou un compteur qui tourne tout seul ? Nous localisons la fuite au millimètre près sans détruire vos carrelages ni vos cloisons.",
+    details: [
+      "Inspection thermographique par caméra infrarouge Fluke haute résolution",
+      "Écoute acoustique de réseau sous pression (géophone de sol)",
+      "Détection au gaz traceur inoffensif (mélange azote/hydrogène)",
+      "Colmatage et remplacement immédiat de la section de tuyau en cuivre, plomb ou multicouche",
+      "Rédaction du rapport technique officiel pour votre assureur habitation (Axa, AG, Ethias...)"
+    ],
+    pricing: "À partir de 90 € en réparation / 160 € en recherche complexe",
+    warranty: "Prise en charge intégrale fréquente par les assurances"
+  },
+  {
+    id: "chauffe-eau",
+    title: "3. Chauffe-eau, Boilers & Chauffage Sanitaire",
+    badge: "Toutes Marques",
+    desc: "Plus d'eau chaude ? Bruit suspect ou fuite sur votre groupe de sécurité ? Nos techniciens interviennent sur tous les types de chauffe-eau électriques et ballons d'eau chaude.",
+    details: [
+      "Dépannage d'urgence sur chauffe-eau électrique, gaz et thermodynamique",
+      "Remplacement de thermostat de sécurité, sonde et résistance stéatite",
+      "Changement de groupe de sécurité et vase d'expansion sanitaire",
+      "Détartrage complet de la cuve et remplacement de l'anode magnésium protectrice",
+      "Installation de chauffe-eau neufs de marques leaders : Bulex, Vaillant, Ariston, ACV, Atlantic"
+    ],
+    pricing: "Dès 110 € pour dépannage / Devis gratuit pour remplacement à neuf",
+    warranty: "Pièces certifiées d'origine constructeur"
+  },
+  {
+    id: "renovation",
+    title: "4. Rénovation de Salle de Bain Clé en Main",
+    badge: "Garantie Décennale",
+    desc: "Modernisez votre intérieur avec une salle de bain esthétique, fonctionnelle et conforme aux normes les plus exigeantes du bâtiment bruxellois.",
+    details: [
+      "Remplacement de baignoire traditionnelle par douche à l'italienne spacieuse",
+      "Pose de receveurs extra-plats antidérapants et parois vitrées securit",
+      "Installation de meubles double vasque suspendus avec rangements intégrés",
+      "Robinetterie encastrée design (finitions chromé, noir mat ou laiton brossé)",
+      "Remplacement intégral des conduites d'alimentation et d'évacuation d'eau"
+    ],
+    pricing: "Sur devis personnalisé gratuit après visite sur place",
+    warranty: "Garantie décennale et finitions soignées"
+  },
+  {
+    id: "robinetterie",
+    title: "5. Robinetterie, WC & Installations Sanitaires",
+    badge: "Économie d'eau",
+    desc: "Du remplacement d'un vieux robinet goutte-à-goutte à l'installation d'un WC suspendu moderne avec chasse économique double débit.",
+    details: [
+      "Installation de bâti-supports WC suspendu Geberit avec plaque design",
+      "Remplacement de mitigeurs lavabo, évier et colonnes de douche thermostatiques",
+      "Pose de réducteurs de pression d'eau pour protéger vos canalisations",
+      "Remplacement de robinets d'arrêt généraux et robinets de machine à laver",
+      "Remplacement de siphons et clapets anti-retour pour bloquer les remontées d'odeurs"
+    ],
+    pricing: "À partir de 80 € selon modèle",
+    warranty: "Marques reconnues : Grohe, Hansgrohe, Geberit"
+  },
+  {
+    id: "detartrage",
+    title: "6. Détartrage & Adoucisseurs d'Eau",
+    badge: "Spécial Bruxelles",
+    desc: "Bruxelles affiche une dureté d'eau moyenne supérieure à 35°fH. Sans traitement, le calcaire obstrue les canalisations, perce les ballons d'eau et augmente votre facture d'électricité de 20%.",
+    details: [
+      "Détartrage mécanique et chimique écologique des circuits d'eau chaude",
+      "Fourniture et installation d'adoucisseurs d'eau volumétriques compacts (BWT, Bayard, Minimax)",
+      "Élimination radicale des traces blanches sur les parois de douche et la robinetterie",
+      "Protection maximale de vos électroménagers (lave-linge, lave-vaisselle, cafetière)",
+      "Contrat d'entretien annuel et livraison de sel adoucisseur haute pureté"
+    ],
+    pricing: "Dès 150 € pour un détartrage / Devis gratuit pour adoucisseur",
+    warranty: "Économies d'énergie et durée de vie prolongée de vos équipements"
+  }
+];
+---
+
+<Layout
+  title="Services de Plomberie à Bruxelles | Débouchage, Fuite, Boiler & Rénovation"
+  description="Découvrez l'ensemble de nos services de plomberie à Bruxelles & Woluwe-Saint-Lambert. Débouchage 24/7, recherche de fuite sans casse, dépannage boiler. Tarifs transparents."
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container text-center">
+      <span class="badge badge-primary">Services & Prestations</span>
+      <h1 class="page-title">Nos Solutions de Plomberie à <span class="text-gradient">Bruxelles</span></h1>
+      <p class="page-desc">
+        Des techniciens qualifiés, réactifs et équipés des technologies de pointe pour résoudre tous vos problèmes sanitaires et de chauffage à Woluwe-Saint-Lambert et dans les 19 communes.
+      </p>
+      <div class="header-badges-row">
+        <span class="pill-item">⚡ Arrivée sous 30 min pour urgences</span>
+        <span class="pill-item">🛡️ Devis gratuit avant intervention</span>
+        <span class="pill-item">💼 Agréé toutes assurances belges</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Services Listing -->
+  <section class="section">
+    <div class="container">
+      <div class="services-stacked-list">
+        {servicesList.map((service, index) => (
+          <article id={service.id} class={`service-block ${index % 2 === 1 ? 'reverse' : ''}`}>
+            <div class="service-block-content">
+              <div class="service-block-badge">
+                <span class="badge badge-accent">{service.badge}</span>
+                <span class="service-pricing-tag">{service.pricing}</span>
+              </div>
+              <h2>{service.title}</h2>
+              <p class="service-block-desc">{service.desc}</p>
+              
+              <ul class="service-features-list">
+                {service.details.map((point) => (
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="service-block-actions">
+                <a href="tel:+3228804567" class="btn btn-accent btn-pulse">
+                  📞 Réserver ce service : 02 880 45 67
+                </a>
+                <a href={`/contact?service=${encodeURIComponent(service.id)}`} class="btn btn-outline">
+                  Demande de devis en ligne
+                </a>
+              </div>
+            </div>
+
+            <div class="service-block-card">
+              <div class="card card-dark guarantee-box">
+                <div class="box-icon">🛡️</div>
+                <h3>L'Engagement Stemaks</h3>
+                <p class="mb-4">
+                  Pour chaque prestation, nous garantissons l'utilisation de pièces certifiées CE et l'établissement d'une facture détaillée conforme aux normes du SPF Économie et des compagnies d'assurance.
+                </p>
+                <div class="box-meta">
+                  <div class="meta-row">
+                    <span>Délai d'intervention :</span>
+                    <strong>Moins de 30 min</strong>
+                  </div>
+                  <div class="meta-row">
+                    <span>Garantie appliquée :</span>
+                    <strong>{service.warranty}</strong>
+                  </div>
+                  <div class="meta-row">
+                    <span>Assurance RC Pro :</span>
+                    <strong>Couverture 2 500 000 €</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Estimator -->
+  <section class="section bg-slate">
+    <div class="container">
+      <PriceEstimator />
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="badge badge-primary">Notre Méthode</span>
+        <h2>Comment Se Déroule Une Intervention ?</h2>
+        <p>Un processus transparent et structuré en 4 étapes pour une sérénité totale.</p>
+      </div>
+
+      <div class="grid-4 process-grid">
+        <div class="process-card">
+          <div class="process-number">01</div>
+          <h3>Prise de Contact</h3>
+          <p>Vous nous appelez au 02 880 45 67 ou effectuez une demande en ligne. Notre coordinateur évalue immédiatement l'urgence.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">02</div>
+          <h3>Arrivée en 30 Min</h3>
+          <p>Le technicien le plus proche de votre commune bruxelloise se déplace avec un véhicule entièrement outillé.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">03</div>
+          <h3>Devis Avant Travaux</h3>
+          <p>Diagnostic précis sur place et établissement d'un devis chiffré. Les travaux ne commencent qu'après votre accord formel.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-number">04</div>
+          <h3>Validation & Garantie</h3>
+          <p>Vérification de la réparation, nettoyage scrupuleux des lieux, délivrance de la facture et du rapport d'assurance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Call to action -->
+  <section class="cta-banner">
+    <div class="container cta-banner-inner">
+      <div class="cta-text">
+        <span class="badge badge-accent">Besoin d'une Intervention Immédiate ?</span>
+        <h2>Nos Artisans Plombiers Sont à Votre Écoute 24/7</h2>
+        <p>Une question technique ou une fuite d'urgence à Bruxelles ? Nous répondons en direct sans intermédiaire.</p>
+      </div>
+      <div class="cta-action-group">
+        <a href="tel:+3228804567" class="btn btn-accent btn-lg btn-pulse">
+          📞 Appeler le 02 880 45 67
+        </a>
+        <a href="/contact" class="btn btn-white btn-lg">
+          Prendre Rendez-vous en Ligne
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.1) 0%, transparent 70%);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--slate-200);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .page-title {
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-desc {
+    max-width: 720px;
+    margin-inline: auto;
+    font-size: 1.15rem;
+    color: var(--navy-600);
+    margin-bottom: 2rem;
+  }
+
+  .header-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .pill-item {
+    font-size: 0.88rem;
+    font-weight: 600;
+    background: var(--white);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--slate-200);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Services Stacked */
+  .services-stacked-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+  }
+
+  .service-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--slate-200);
+  }
+
+  .service-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  @media (min-width: 960px) {
+    .service-block {
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
+    }
+
+    .service-block.reverse {
+      grid-template-columns: 1fr 1.4fr;
+    }
+
+    .service-block.reverse .service-block-content {
+      order: 2;
+    }
+
+    .service-block.reverse .service-block-card {
+      order: 1;
+    }
+  }
+
+  .service-block-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-pricing-tag {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+
+  .service-block h2 {
+    font-size: 1.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-block-desc {
+    font-size: 1.1rem;
+    color: var(--navy-700);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .service-features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--navy-800);
+  }
+
+  .service-features-list svg {
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .service-block-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .guarantee-box {
+    padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .box-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .guarantee-box h3 {
+    margin-bottom: 0.8rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  .box-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    color: var(--slate-300);
+  }
+
+  .meta-row strong {
+    color: var(--white);
+  }
+
+  /* Process Cards */
+  .process-grid {
+    gap: 1.5rem;
+  }
+
+  .process-card {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base);
+  }
+
+  .process-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .process-number {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--primary-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .process-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .process-card p {
+    font-size: 0.92rem;
+    color: var(--navy-600);
+  }
+</style>

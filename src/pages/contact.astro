@@ -1,0 +1,486 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact Plombier Bruxelles & Devis Gratuit | Stemaks Woluwe"
+  description="Contactez Stemaks Plomberie à Woluwe-Saint-Lambert. Permanence urgence 24/7 au 02 880 45 67. Formulaire de devis gratuit et intervention sous 30 min."
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container text-center">
+      <span class="badge badge-accent">Permanence 24h/24 & 7j/7</span>
+      <h1 class="page-title">Contact & Devis Gratuit à <span class="text-gradient">Bruxelles</span></h1>
+      <p class="page-desc">
+        Une inondation en cours, un WC bouché ou un projet de rénovation sanitaire ? Nos artisans plombiers vous répondent immédiatement.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Form Column -->
+        <div class="contact-form-column">
+          <div class="form-card">
+            <div class="form-card-header">
+              <span class="badge badge-primary">Formulaire Rapide</span>
+              <h2>Demandez Votre Devis Gratuit</h2>
+              <p>Réponse garantie sous 15 minutes pendant les heures ouvrées.</p>
+            </div>
+
+            <form id="contact-form" class="custom-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" class="form-label">Nom et Prénom *</label>
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Jean Dupont" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="form-label">Numéro de Téléphone *</label>
+                  <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ex: 0470 12 34 56" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email" class="form-label">Adresse Email *</label>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="jean.dupont@email.be" required />
+                </div>
+                <div class="form-group">
+                  <label for="commune" class="form-label">Commune d'intervention *</label>
+                  <select id="commune" name="commune" class="form-control" required>
+                    <option value="woluwe-saint-lambert" selected>Woluwe-Saint-Lambert (1200)</option>
+                    <option value="woluwe-saint-pierre">Woluwe-Saint-Pierre (1150)</option>
+                    <option value="etterbeek">Etterbeek (1040)</option>
+                    <option value="ixelles">Ixelles (1050)</option>
+                    <option value="schaerbeek">Schaerbeek (1030)</option>
+                    <option value="auderghem">Auderghem (1160)</option>
+                    <option value="bruxelles-centre">Bruxelles Centre (1000)</option>
+                    <option value="uccle">Uccle (1180)</option>
+                    <option value="autre">Autre commune bruxelloise</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="service-type" class="form-label">Type d'intervention *</label>
+                  <select id="service-type" name="service-type" class="form-control" required>
+                    <option value="debouchage">Débouchage express (WC, évier, canalisation)</option>
+                    <option value="fuite">Recherche ou réparation de fuite d'eau</option>
+                    <option value="chauffe-eau">Panne chauffe-eau / boiler / eau chaude</option>
+                    <option value="robinetterie">Robinetterie / WC / Sanitaire</option>
+                    <option value="renovation">Rénovation de salle de bain</option>
+                    <option value="autre">Autre demande de plomberie</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="urgency-level" class="form-label">Niveau d'urgence *</label>
+                  <select id="urgency-level" name="urgency-level" class="form-control" required>
+                    <option value="urgent">🚨 Urgence absolue (Moins de 30 min)</option>
+                    <option value="today" selected>⚡ Dans la journée</option>
+                    <option value="rendez-vous">📅 Rendez-vous programmé</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Description de votre problème</label>
+                <textarea id="message" name="message" class="form-control" placeholder="Décrivez en quelques mots la situation (ex: fuite sous évier, eau qui ne s'évacue plus, marque du boiler...)"></textarea>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-accent btn-lg w-full">
+                  <span>Envoyer ma demande de devis</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+                <span class="privacy-note">🔒 Vos données personnelles sont strictement confidentielles et ne sont jamais cédées à des tiers.</span>
+              </div>
+            </form>
+
+            <!-- Success State Message (hidden by default) -->
+            <div id="form-success" class="form-success-box" style="display: none;">
+              <div class="success-icon">✓</div>
+              <h3>Merci pour votre demande !</h3>
+              <p>Votre demande a bien été transmise à notre équipe de dispatching. Un technicien va vous rappeler au numéro indiqué dans les <strong>15 prochaines minutes</strong>.</p>
+              <div class="success-callout">
+                <p>En cas d'urgence absolue ou inondation en cours :</p>
+                <a href="tel:+3228804567" class="btn btn-accent btn-sm">
+                  📞 Appelez directement le 02 880 45 67
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Column -->
+        <div class="contact-info-column">
+          <!-- Emergency Box -->
+          <div class="card card-dark emergency-focus-card">
+            <div class="live-dot-wrap mb-2">
+              <span class="live-indicator"></span>
+              <strong class="text-accent">Ligne Téléphonique Prioritaire 24/7</strong>
+            </div>
+            <h2>02 880 45 67</h2>
+            <p>Notre permanence technique répond nuit et jour, dimanches et jours fériés compris. Un technicien de permanence est toujours prêt à partir.</p>
+            <a href="tel:+3228804567" class="btn btn-accent btn-pulse w-full mt-3">
+              📞 Appeler Immédiatement
+            </a>
+          </div>
+
+          <!-- Office Details Card -->
+          <div class="card info-card">
+            <h3>Nos Coordonnées</h3>
+            <ul class="info-list">
+              <li>
+                <div class="info-icon">📍</div>
+                <div>
+                  <strong>Adresse du Siège :</strong>
+                  <p>Avenue de Broqueville 120<br />1200 Woluwe-Saint-Lambert, Bruxelles</p>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon">✉️</div>
+                <div>
+                  <strong>Email Professionnel :</strong>
+                  <p><a href="mailto:contact@stemaks-plomberie.be">contact@stemaks-plomberie.be</a></p>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon">🕒</div>
+                <div>
+                  <strong>Horaires :</strong>
+                  <p><strong>Urgences :</strong> 24h/24 & 7j/7<br /><strong>Bureaux & Devis :</strong> Lun-Sam 08h00 - 19h00</p>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon">🛡️</div>
+                <div>
+                  <strong>Registre des Entreprises :</strong>
+                  <p>BCE / TVA : BE 0798.452.190</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Interactive Brussels Coverage Card -->
+          <div class="card map-preview-card">
+            <h4>Périmètre d'Intervention Direct</h4>
+            <div class="map-badge-zone">
+              <span class="zone-pin">📍 Woluwe-Saint-Lambert (Base)</span>
+              <span class="zone-info">Arrivée en 15 - 20 min</span>
+            </div>
+            <div class="map-badge-zone mt-2">
+              <span class="zone-pin">📍 Les 18 Autres Communes</span>
+              <span class="zone-info">Arrivée en 20 - 30 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.1) 0%, transparent 70%);
+    padding-top: 4rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--slate-200);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .page-title {
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-desc {
+    max-width: 700px;
+    margin-inline: auto;
+    font-size: 1.15rem;
+    color: var(--navy-600);
+  }
+
+  /* Contact Grid */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 960px) {
+    .contact-grid {
+      grid-template-columns: 1.35fr 1fr;
+      gap: 3.5rem;
+    }
+  }
+
+  /* Form Card */
+  .form-card {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-xl);
+    padding: 2.2rem;
+    box-shadow: var(--shadow-xl);
+  }
+
+  @media (min-width: 768px) {
+    .form-card {
+      padding: 3rem;
+    }
+  }
+
+  .form-card-header {
+    margin-bottom: 2rem;
+  }
+
+  .form-card-header h2 {
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
+    font-size: 1.8rem;
+  }
+
+  .form-card-header p {
+    color: var(--navy-600);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 600px) {
+    .form-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .form-footer {
+    margin-top: 2rem;
+  }
+
+  .privacy-note {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--slate-500);
+    text-align: center;
+    margin-top: 0.8rem;
+  }
+
+  /* Form Success Box */
+  .form-success-box {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--slate-50);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--success);
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--success);
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .form-success-box h3 {
+    color: var(--navy-900);
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .form-success-box p {
+    color: var(--navy-700);
+    max-width: 500px;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .success-callout {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--slate-200);
+    display: inline-block;
+  }
+
+  .success-callout p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Info Column */
+  .contact-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .emergency-focus-card {
+    background: linear-gradient(135deg, var(--navy-950) 0%, #0369a1 100%);
+    padding: 2.2rem;
+  }
+
+  .emergency-focus-card h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .info-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.35rem;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .info-list strong {
+    display: block;
+    color: var(--navy-900);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .info-list p {
+    font-size: 0.92rem;
+    color: var(--navy-600);
+    margin: 0;
+  }
+
+  .map-preview-card {
+    background: var(--slate-100);
+    border: 1px solid var(--slate-200);
+  }
+
+  .map-preview-card h4 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .map-badge-zone {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--slate-200);
+  }
+
+  .zone-pin {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--navy-900);
+  }
+
+  .zone-info {
+    font-size: 0.85rem;
+    color: var(--primary-dark);
+    font-weight: 600;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .mt-3 {
+    margin-top: 1rem;
+  }
+
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+</style>
+
+<script>
+  // URL parameters prefill logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service');
+    const communeParam = params.get('commune');
+    const urgencyParam = params.get('urgency');
+
+    if (serviceParam) {
+      const serviceSelect = document.getElementById('service-type') as HTMLSelectElement | null;
+      if (serviceSelect) {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+          if (serviceSelect.options[i].value.includes(serviceParam)) {
+            serviceSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    if (communeParam) {
+      const communeSelect = document.getElementById('commune') as HTMLSelectElement | null;
+      if (communeSelect) {
+        for (let i = 0; i < communeSelect.options.length; i++) {
+          if (communeSelect.options[i].value.includes(communeParam.toLowerCase()) || 
+              communeSelect.options[i].text.toLowerCase().includes(communeParam.toLowerCase())) {
+            communeSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    if (urgencyParam) {
+      const urgencySelect = document.getElementById('urgency-level') as HTMLSelectElement | null;
+      if (urgencySelect) {
+        for (let i = 0; i < urgencySelect.options.length; i++) {
+          if (urgencySelect.options[i].value === urgencyParam) {
+            urgencySelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    // Form submit interactive experience
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const successBox = document.getElementById('form-success');
+
+    if (form && successBox) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.style.display = 'none';
+        successBox.style.display = 'block';
+        successBox.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  });
+</script>

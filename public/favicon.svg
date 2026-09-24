@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <!-- Water Drop in Blue -->
+  <path d="M32 10 C32 10, 48 28, 48 38 C48 46.8 40.8 54 32 54 C23.2 54, 16 46.8, 16 38 C16 28, 32 10, 32 10 Z" fill="url(#blueGrad)"/>
+  <!-- Pipe / Wrench Spark in Orange -->
+  <circle cx="38" cy="24" r="4" fill="#f97316"/>
+  <path d="M28 32 L36 40 M36 32 L28 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+</svg>

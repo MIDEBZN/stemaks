@@ -1,0 +1,357 @@
+---
+// Interactive Price Estimator / Diagnostic Calculator for Stemaks Plomberie
+---
+
+<div class="estimator-wrapper">
+  <div class="estimator-header">
+    <div class="estimator-badge">
+      <span class="live-indicator"></span>
+      <span>Simulateur Instantané 100% Gratuit</span>
+    </div>
+    <h3>Estimez le tarif de votre intervention en 10 secondes</h3>
+    <p>Sélectionnez votre situation pour obtenir un tarif indicatif transparent, sans engagement et sans surprise.</p>
+  </div>
+
+  <div class="estimator-body">
+    <div class="form-grid">
+      <!-- Step 1: Service -->
+      <div class="form-group">
+        <label for="est-service" class="form-label">
+          <span class="step-num">1</span> Quelle est la nature de votre problème ?
+        </label>
+        <select id="est-service" class="form-control select-styled">
+          <option value="debouchage" data-base="95" data-time="20 à 30 min">Débouchage WC / Évier / Douche</option>
+          <option value="debouchage-colonne" data-base="140" data-time="30 min">Débouchage colonne ou haute pression</option>
+          <option value="fuite-simple" data-base="90" data-time="25 min">Fuite d'eau apparente (tuyau, joint, robinet)</option>
+          <option value="fuite-cachee" data-base="160" data-time="35 min">Recherche de fuite encastrée (caméra / acoustique)</option>
+          <option value="chauffe-eau-panne" data-base="110" data-time="30 min">Panne chauffe-eau / boiler (eau froide)</option>
+          <option value="chauffe-eau-detartrage" data-base="150" data-time="Sur RDV">Détartrage & entretien boiler</option>
+          <option value="sanitaire" data-base="120" data-time="Sur RDV">Pose WC suspendu ou nouveau mitigeur</option>
+          <option value="renovation" data-base="850" data-time="Sur devis">Rénovation complète salle de bain</option>
+        </select>
+      </div>
+
+      <!-- Step 2: Urgency -->
+      <div class="form-group">
+        <label for="est-urgency" class="form-label">
+          <span class="step-num">2</span> Quel est le degré d'urgence ?
+        </label>
+        <select id="est-urgency" class="form-control select-styled">
+          <option value="urgent" data-multiplier="1.2">🚨 Urgence absolue (Intervention sous 30 min)</option>
+          <option value="today" data-multiplier="1.0" selected>⚡ Dans la journée (Créneau de 2 heures)</option>
+          <option value="planned" data-multiplier="0.95">📅 Rendez-vous planifié (Semaine / Samedi)</option>
+        </select>
+      </div>
+
+      <!-- Step 3: Location -->
+      <div class="form-group">
+        <label for="est-commune" class="form-label">
+          <span class="step-num">3</span> Dans quelle commune êtes-vous ?
+        </label>
+        <select id="est-commune" class="form-control select-styled">
+          <option value="woluwe-saint-lambert" data-extra-time="15 min" selected>Woluwe-Saint-Lambert (1200) - Base Locale</option>
+          <option value="woluwe-saint-pierre" data-extra-time="20 min">Woluwe-Saint-Pierre (1150)</option>
+          <option value="etterbeek" data-extra-time="20 min">Etterbeek (1040)</option>
+          <option value="ixelles" data-extra-time="25 min">Ixelles (1050)</option>
+          <option value="schaerbeek" data-extra-time="25 min">Schaerbeek (1030)</option>
+          <option value="auderghem" data-extra-time="20 min">Auderghem (1160)</option>
+          <option value="bruxelles" data-extra-time="30 min">Bruxelles Ville (1000)</option>
+          <option value="uccle" data-extra-time="35 min">Uccle (1180)</option>
+          <option value="autre" data-extra-time="30 min">Autre commune bruxelloise / périphérie</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Live Calculation Result Card -->
+    <div class="estimate-result-card" id="estimate-result">
+      <div class="result-details">
+        <div class="price-box">
+          <span class="price-caption">Tarif indicatif estimé (HTVA)</span>
+          <div class="price-val">
+            <span class="currency">à partir de </span>
+            <strong id="display-price">95 €</strong>
+          </div>
+          <span class="price-guarantee">✓ Déplacement & 1ère heure de main d'œuvre inclus</span>
+        </div>
+
+        <div class="time-box">
+          <span class="time-caption">Délai d'intervention estimé :</span>
+          <div class="time-val" id="display-time">
+            <span class="flash-icon">⚡</span>
+            <span>Moins de 20 min</span>
+          </div>
+          <span class="technician-badge">🟢 3 plombiers en patrouille à Woluwe</span>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <a id="btn-order-call" href="tel:+3228804567" class="btn btn-accent btn-pulse">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>Appeler le 02 880 45 67</span>
+        </a>
+        <a id="btn-order-quote" href="/contact" class="btn btn-outline">
+          Réserver ce tarif en ligne
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .estimator-wrapper {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .estimator-wrapper {
+      padding: 3rem;
+    }
+  }
+
+  .estimator-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  }
+
+  .estimator-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .estimator-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.825rem;
+    font-weight: 700;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.8rem;
+  }
+
+  .estimator-header h3 {
+    font-size: 1.6rem;
+    color: var(--navy-900);
+    margin-bottom: 0.5rem;
+  }
+
+  .estimator-header p {
+    color: var(--navy-600);
+    font-size: 1rem;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .form-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.78rem;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+  }
+
+  .select-styled {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    padding-right: 2.5rem;
+    font-weight: 500;
+  }
+
+  .estimate-result-card {
+    background: var(--navy-950);
+    color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 850px) {
+    .estimate-result-card {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 2.5rem;
+    }
+  }
+
+  .result-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .result-details {
+      flex-direction: row;
+      gap: 3rem;
+    }
+  }
+
+  .price-caption, .time-caption {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--slate-400);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .price-val {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .price-val .currency {
+    font-size: 0.95rem;
+    color: var(--slate-300);
+  }
+
+  .price-val strong {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #38bdf8;
+  }
+
+  .price-guarantee {
+    font-size: 0.78rem;
+    color: var(--slate-400);
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .time-val {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .flash-icon {
+    font-size: 1.4rem;
+  }
+
+  .technician-badge {
+    font-size: 0.78rem;
+    color: var(--success);
+    display: block;
+    margin-top: 0.3rem;
+    font-weight: 600;
+  }
+
+  .result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 260px;
+  }
+
+  .result-actions .btn {
+    width: 100%;
+  }
+
+  .result-actions .btn-outline {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .result-actions .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--white);
+  }
+</style>
+
+<script>
+  function updateEstimator() {
+    const serviceSelect = document.getElementById('est-service') as HTMLSelectElement | null;
+    const urgencySelect = document.getElementById('est-urgency') as HTMLSelectElement | null;
+    const communeSelect = document.getElementById('est-commune') as HTMLSelectElement | null;
+    const displayPrice = document.getElementById('display-price');
+    const displayTime = document.getElementById('display-time');
+    const btnQuote = document.getElementById('btn-order-quote') as HTMLAnchorElement | null;
+
+    if (!serviceSelect || !urgencySelect || !communeSelect || !displayPrice || !displayTime) return;
+
+    const selectedServiceOption = serviceSelect.options[serviceSelect.selectedIndex];
+    const selectedUrgencyOption = urgencySelect.options[urgencySelect.selectedIndex];
+    const selectedCommuneOption = communeSelect.options[communeSelect.selectedIndex];
+
+    const basePrice = parseFloat(selectedServiceOption.getAttribute('data-base') || '95');
+    const multiplier = parseFloat(selectedUrgencyOption.getAttribute('data-multiplier') || '1.0');
+    
+    let calculated = Math.round(basePrice * multiplier);
+    displayPrice.textContent = `${calculated} €`;
+
+    // Dynamic arrival estimation
+    const isWoluwe = communeSelect.value === 'woluwe-saint-lambert';
+    const urgency = urgencySelect.value;
+
+    let timeText = 'Moins de 20 min';
+    if (urgency === 'urgent') {
+      timeText = isWoluwe ? 'Moins de 15 à 20 min' : 'Moins de 30 min';
+    } else if (urgency === 'today') {
+      timeText = 'Aujourd\'hui (dans l\'heure)';
+    } else {
+      timeText = 'Au créneau de votre choix';
+    }
+
+    displayTime.innerHTML = `<span class="flash-icon">⚡</span><span>${timeText}</span>`;
+
+    if (btnQuote) {
+      btnQuote.href = `/contact?service=${encodeURIComponent(serviceSelect.value)}&commune=${encodeURIComponent(communeSelect.value)}&urgency=${encodeURIComponent(urgencySelect.value)}`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const serviceSelect = document.getElementById('est-service');
+    const urgencySelect = document.getElementById('est-urgency');
+    const communeSelect = document.getElementById('est-commune');
+
+    if (serviceSelect) serviceSelect.addEventListener('change', updateEstimator);
+    if (urgencySelect) urgencySelect.addEventListener('change', updateEstimator);
+    if (communeSelect) communeSelect.addEventListener('change', updateEstimator);
+
+    updateEstimator();
+  });
+</script>
